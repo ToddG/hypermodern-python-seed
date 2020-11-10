@@ -44,9 +44,11 @@ def lint(session: Session) -> None:
 @nox.session(python=_versions)
 def tests(session: Session) -> None:
     """Run tests."""
-    args = session.posargs or ["--cov"]
+    args = session.posargs or ["--cov",  "--xdoctest"]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(session, "coverage[toml]", "pytest", "pytest-cov")
+    install_with_constraints(
+        session, "coverage[toml]", "pytest", "pytest-cov", "xdoctest"
+    )
     session.run("pytest", *args)
 
 
@@ -87,3 +89,12 @@ def pytype(session: Session) -> None:
     args = session.posargs or ["--disable=import-error", *locations]
     install_with_constraints(session, "pytype")
     session.run("pytype", *args)
+
+
+@nox.session(python=_versions)
+def xdoctest(session: Session) -> None:
+    """Run examples with xdoctest."""
+    args = session.posargs or ["all"]
+    session.run("poetry", "install", "--no-dev", external=True)
+    install_with_constraints(session, "xdoctest")
+    session.run("python", "-m", "xdoctest", package, *args)
