@@ -1,3 +1,5 @@
+"""project_name Nox sessions."""
+
 import tempfile
 from typing import Any
 
@@ -6,9 +8,11 @@ from nox.sessions import Session
 
 locations = "src", "tests", "noxfile.py"
 nox.options.sessions = "lint", "mypy", "pytype", "tests"
+_versions = ["3.7"]
 
 
 def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> None:
+    """Install application dependencies using constraints."""
     with tempfile.NamedTemporaryFile() as requirements:
         session.run(
             "poetry",
@@ -21,17 +25,22 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def lint(session: Session) -> None:
     """Run the code linters."""
     args = session.posargs or locations
     install_with_constraints(
-        session, "flake8", "flake8-annotations", "flake8-black", "flake8-isort"
+        session,
+        "flake8",
+        "flake8-annotations",
+        "flake8-black",
+        "flake8-isort",
+        "flake8-docstrings",
     )
     session.run("flake8", *args)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def tests(session: Session) -> None:
     """Run tests."""
     args = session.posargs or ["--cov"]
@@ -40,14 +49,14 @@ def tests(session: Session) -> None:
     session.run("pytest", *args)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def format(session: Session) -> None:
     """Format the code using black and isort."""
     isort(session)
     black(session)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def isort(session: Session) -> None:
     """Run the import re-orderer (isort)."""
     args = session.posargs or locations
@@ -55,7 +64,7 @@ def isort(session: Session) -> None:
     session.run("isort", *args)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def black(session: Session) -> None:
     """Run the code reformatter (black)."""
     args = session.posargs or locations
@@ -63,7 +72,7 @@ def black(session: Session) -> None:
     session.run("black", *args)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def mypy(session: Session) -> None:
     """Run the static type checker (mypy))."""
     args = session.posargs or locations
@@ -71,7 +80,7 @@ def mypy(session: Session) -> None:
     session.run("mypy", *args)
 
 
-@nox.session(python=["3.7", "3.8"])
+@nox.session(python=_versions)
 def pytype(session: Session) -> None:
     """Run the static type checker (pytype)."""
     args = session.posargs or ["--disable=import-error", *locations]
