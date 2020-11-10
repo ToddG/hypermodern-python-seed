@@ -3,6 +3,12 @@ name = "{{cookiecutter.project_name}}"
 version = "0.1.0"
 description = "{{cookiecutter.description}}"
 authors = ["{{cookiecutter.author_name}} <{{cookiecutter.author_email}}>"]
+license = "{{cookiecutter.license}}"
+readme = "{{cookiecutter.readme}}"
+homepage = "{{cookiecutter.homepage}}"
+repository = "{{cookiecutter.repository}}"
+keywords = [{{cookiecutter.keywords}}]
+
 
 [tool.poetry.dependencies]
 python = "^3.8"
