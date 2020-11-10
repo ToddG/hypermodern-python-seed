@@ -5,8 +5,8 @@
     "author_email": "author_email",
     "description": "description",
     "license" : "license",
-    "readme" : "readme",
+    "readme" : "README.md",
     "homepage" : "homepage",
     "repository" : "repository",
-    "keywords" : "comma,separated,list" 
+    "keywords" : "\"comma\",\"separated\",\"list\""
 }
