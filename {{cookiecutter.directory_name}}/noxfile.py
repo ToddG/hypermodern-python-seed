@@ -6,7 +6,7 @@ from typing import Any
 import nox
 from nox.sessions import Session
 
-locations = "src", "tests", "noxfile.py"
+locations = "src", "tests", "noxfile.py", "docs/conf.py"
 nox.options.sessions = "lint", "mypy", "pytype", "tests"
 _versions = ["3.7"]
 
@@ -44,7 +44,7 @@ def lint(session: Session) -> None:
 @nox.session(python=_versions)
 def tests(session: Session) -> None:
     """Run tests."""
-    args = session.posargs or ["--cov",  "--xdoctest"]
+    args = session.posargs or ["--cov", "--xdoctest"]
     session.run("poetry", "install", "--no-dev", external=True)
     install_with_constraints(
         session, "coverage[toml]", "pytest", "pytest-cov", "xdoctest"
@@ -91,10 +91,8 @@ def pytype(session: Session) -> None:
     session.run("pytype", *args)
 
 
-@nox.session(python=_versions)
-def xdoctest(session: Session) -> None:
-    """Run examples with xdoctest."""
-    args = session.posargs or ["all"]
-    session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(session, "xdoctest")
-    session.run("python", "-m", "xdoctest", package, *args)
+@nox.session(python="3.8")
+def docs(session: Session) -> None:
+    """Build the documentation."""
+    install_with_constraints(session, "sphinx")
+    session.run("sphinx-build", "docs", "docs/_build")
