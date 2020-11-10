@@ -28,6 +28,7 @@ source = ["{{cookiecutter.project_name}}"]
 
 [tool.coverage.report]
 show_missing = true
+fail_under = 80
 
 [tool.poetry.scripts]
 {{cookiecutter.project_name}} = "{{cookiecutter.project_name}}.console:main"
