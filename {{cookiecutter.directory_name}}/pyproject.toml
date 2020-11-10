@@ -24,6 +24,7 @@ flake8-black = "^0.2.1"
 flake8-isort = "^4.0.0"
 mypy = "^0.790"
 pytype = {version = "^2020.11.3", python = ">=3.7, < 3.9"}
+flake8-annotations = "^2.4.1"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
