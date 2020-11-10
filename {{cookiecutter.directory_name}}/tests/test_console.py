@@ -1,6 +1,5 @@
 import click.testing
 import pytest
-
 from {{cookiecutter.project_name}} import console
 
 

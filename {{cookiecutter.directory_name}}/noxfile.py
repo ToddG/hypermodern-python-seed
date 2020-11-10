@@ -19,6 +19,19 @@ def tests(session):
 
 
 @nox.session(python=["3.7", "3.8"])
+def format(session):
+    isort(session)
+    black(session)
+
+
+@nox.session(python=["3.7", "3.8"])
+def isort(session):
+    args = session.posargs or locations
+    session.install("flake8-isort")
+    session.run("isort", *args)
+
+
+@nox.session(python=["3.7", "3.8"])
 def black(session):
     args = session.posargs or locations
     session.install("black")
