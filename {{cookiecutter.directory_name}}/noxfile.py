@@ -4,7 +4,7 @@ import nox
 from nox.sessions import Session
 
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
-nox.options.sessions = "lint", "mypy", "pytype", "tests"
+nox.options.sessions = "lint", "mypy", "pytype", "tests", "docs"
 _versions = ["3.7", "3.8"]
 
 
@@ -77,5 +77,10 @@ def pytype(session: Session) -> None:
 def docs(session: Session) -> None:
     """Build the documentation."""
     session.run("poetry", "install", "--no-dev", external=True)
-    session.install("sphinx", "sphinx-autodoc-typehints")
+    session.install(
+        "six",
+        "sphinx",
+        "sphinx-autodoc-typehints",
+        "sphinxcontrib.mermaid",
+    )
     session.run("sphinx-build", "docs", "docs/_build")
