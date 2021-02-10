@@ -10,7 +10,9 @@ TODO: Add installation instructions here.
 
 ## Run Tests
 
-TODO: Add instructions to run test suite(s) here.
+```bash
+nox -rs test
+```
 
 ## Quick Start
 
@@ -18,9 +20,17 @@ TODO: Show how to quickly get up and running.
 
 ## Documentation
 
-* [Use Cases](./docs/USE_CASES.md)
-* [Spec](./docs/SPEC.md)
-* [Architecture](./docs/[ARCHITECTURE.md])
+Source documentation is at:
+
+* [Documentation Root](./docs/content/index.rst)
+
+Or you can build the documentation and view it in a browser:
+
+```bash
+nox -s docs
+firefox docs/_build/html/index.html
+```
+
 
 ## Details
 

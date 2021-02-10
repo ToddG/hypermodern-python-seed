@@ -3,5 +3,10 @@ select = ANN,BLK,C,D,DAR,E,F,I,W
 ignore = E203,W503
 max-line-length = 88
 docstring-convention = google
-#per-file-ignores =
-#    tests/*:S101,ANN
+per-file-ignores =
+    tests/*:S101,ANN101
+    src/*:ANN101
+extend-ignore =
+    # Google Python style is not RST until after processed by Napoleon
+    # See https://github.com/peterjc/flake8-rst-docstrings/issues/17
+    RST201,RST203,RST301,

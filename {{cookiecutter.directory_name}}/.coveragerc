@@ -1,0 +1,9 @@
+[run]
+omit = 
+    # custom_logger doesn't need to be tested
+    src/{{cookiecutter.project_name}}/custom_logger.py
+    # definitely do not want to test site packages
+    */site-packages/*
+
+# most likely to use multiprocssing
+concurrency=multiprocessing
