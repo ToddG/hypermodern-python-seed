@@ -123,13 +123,14 @@ def docs(session: Session) -> None:
     session.run("sphinx-build", "-b", "html", "docs", "docs/_build/html")
 
 
-@nox.session(python=_versions)
-def pdf(session: Session) -> None:
-    """Build the documentation as pdf."""
-    session = prepare_documentation(session)
-    session.run("sphinx-build", "-b", "latex", "docs", "docs/_build/latex")
-    session.cd("docs/_build/latex")
-    session.run("make", external=True)
+# TODO: install latex deps in container
+# @nox.session(python=_versions)
+# def pdf(session: Session) -> None:
+#     """Build the documentation as pdf."""
+#     session = prepare_documentation(session)
+#     session.run("sphinx-build", "-b", "latex", "docs", "docs/_build/latex")
+#     session.cd("docs/_build/latex")
+#     session.run("make", external=True)
 
 
 def prepare_documentation(session: Session) -> Session:

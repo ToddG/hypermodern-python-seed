@@ -2,7 +2,9 @@
 
 ## Dependencies
 
-TODO: Add dependencies here that are not accounted for in the pyproject.toml.
+TODO: Add dependencies here that are not accounted for in the `pyproject.toml`.
+
+* docker
 
 ## Installation
 
@@ -10,9 +12,7 @@ TODO: Add installation instructions here.
 
 ## Run Tests
 
-```bash
-nox -rs test
-```
+TODO: Add instructions here.
 
 ## Quick Start
 
@@ -25,6 +25,8 @@ Source documentation is at:
 * [Documentation Root](./docs/content/index.rst)
 
 Or you can build the documentation and view it in a browser:
+
+TODO: Show docs help. 
 
 ```bash
 nox -s docs
