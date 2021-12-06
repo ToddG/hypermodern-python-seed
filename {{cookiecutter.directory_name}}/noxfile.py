@@ -125,10 +125,7 @@ def docs(session: Session) -> None:
 
 @nox.session(python=_versions)
 def pdf(session: Session) -> None:
-    """Build the documentation as pdf.
-
-    TODO: depends on latex installation, which is hard to get right.
-    """
+    """Build the documentation as pdf."""
     session = prepare_documentation(session)
     session.run("sphinx-build", "-b", "latex", "docs", "docs/_build/latex")
     session.cd("docs/_build/latex")
@@ -138,11 +135,6 @@ def pdf(session: Session) -> None:
 def prepare_documentation(session: Session) -> Session:
     """Prepare the session to render documentation."""
     session.install(".")
-    if not os.path.exists("./node_modules/.bin/mmdc"):
-        print(
-            "Mermaidjs CLI 'mmdc' does not exist, attempting to " "install via 'yarn'"
-        )
-        session.run("yarn", external=True)
     install_with_constraints(
         session,
         "six",
@@ -157,13 +149,13 @@ def prepare_documentation(session: Session) -> Session:
 def dist(session: Session) -> None:
     """Build distribution with incremented patch version."""
     dist_dir = "dist"
- 
-    for existing_file in glob.iglob(
-            f"{dist_dir}/{{cookiecutter.project_name}}-*"):
+
+    iglob = glob.iglob(f"{dist_dir}/{{cookiecutter.project_name}}-*")
+    for existing_file in iglob:
         print(f"removing '{existing_file}'")
         os.remove(existing_file)
     session.run("poetry", "build", external=True)
     session.run("poetry", "version", "patch", external=True)
-    for new_file in glob.iglob(f"{dist_dir}/{{cookiecutter.project_name}}-*"):
+    for new_file in iglob:
         print(f"created '{new_file}'")
 
