@@ -14,6 +14,11 @@ these:
 * poetry
 * pyenv
 * nox
+* mmdc
+* brew
+* docker
+* [latexmk](https://mg.readthedocs.io/latexmk.html)
+* [dvipng](https://savannah.nongnu.org/projects/dvipng/)
 
 ## Quick Start
 

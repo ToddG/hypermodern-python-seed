@@ -10,7 +10,7 @@ import nox
 from nox.sessions import Session
 
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
-nox.options.sessions = "format", "lint", "mypy", "pytype", "tests", "docs", "pdf"
+nox.options.sessions = "format", "lint", "mypy", "pytype", "tests", "docs",
 _versions = ["3.8"]
 
 
@@ -125,7 +125,10 @@ def docs(session: Session) -> None:
 
 @nox.session(python=_versions)
 def pdf(session: Session) -> None:
-    """Build the documentation as pdf."""
+    """Build the documentation as pdf.
+
+    TODO: depends on latex installation, which is hard to get right.
+    """
     session = prepare_documentation(session)
     session.run("sphinx-build", "-b", "latex", "docs", "docs/_build/latex")
     session.cd("docs/_build/latex")
