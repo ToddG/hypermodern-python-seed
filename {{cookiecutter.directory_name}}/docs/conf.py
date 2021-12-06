@@ -12,8 +12,4 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.graphviz",
     "sphinx_autodoc_typehints",
-    "sphinxcontrib.mermaid",
 ]
-mermaid_cmd = "mmdc"
-mermaid_output_format = "svg"
-mermaid_version = "8.11.0"
