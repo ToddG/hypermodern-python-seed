@@ -51,3 +51,6 @@ RUN chown -R $CONTAINER_USER: /home/linuxbrew/.linuxbrew
 # ----------------------------------------------------------------------------
 RUN echo 'PATH=$PATH:/home/linuxbrew/.linuxbrew/bin' >> /root/.bash_aliases 
 RUN /home/linuxbrew/.linuxbrew/bin/brew install gcc nox poetry
+COPY ./launcher.sh /launcher.sh 
+
+ENTRYPOINT ["/launcher.sh", "nox"]
