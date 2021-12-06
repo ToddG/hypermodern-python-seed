@@ -6,15 +6,12 @@ pulled in the ideas that are relevant to the projects I build, today.
 
 ## Dependencies
 
+* python3
 * [cookiecutter](https://github.com/cookiecutter/cookiecutter)
 
-See [hypermodern-python][1] for further installation instructions. You'll need
-these:
-
-* poetry
-* nox
-* brew
-* docker
+See [hypermodern-python][1] for further installation instructions. However, for
+the repos that are created that use this repo, the build dependencies have been
+abstracted into a docker container.
 
 ## Quick Start
 

@@ -4,19 +4,42 @@
 
 TODO: Add dependencies here that are not accounted for in the `pyproject.toml`.
 
+* python3
 * docker
 
 ## Installation
 
 TODO: Add installation instructions here.
 
-## Run Tests
-
-TODO: Add instructions here.
-
 ## Quick Start
 
-TODO: Show how to quickly get up and running.
+Use the provided docker container to run the commands.
+
+1. build the container
+
+```
+./scripts/build-container.sh
+```
+
+2. use the container
+
+```
+./scripts/run-command.sh    
+```
+
+These commands delegate to `nox`.
+
+3. explore the container
+
+```
+./scripts/launch-shell-in-container.sh
+```
+
+## Run Tests
+
+```bash
+./scripts/run-command.sh -rs tests
+```
 
 ## Documentation
 
@@ -24,15 +47,19 @@ Source documentation is at:
 
 * [Documentation Root](./docs/content/index.rst)
 
-Or you can build the documentation and view it in a browser:
+Or you can build the documentation:
 
 TODO: Show docs help. 
 
 ```bash
-nox -s docs
-firefox docs/_build/html/index.html
+./scripts/run-command.sh -rs docs
 ```
 
+...and then launch a browser to view the documentation:
+
+```
+firefox docs/_build/html/index.html
+```
 
 ## Details
 
