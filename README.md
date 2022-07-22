@@ -2,16 +2,20 @@
 
 Generate python seed apps based on `cjolowicz's` [hypermodern-python][1]. Note
 that `cjolowicz` has also created a [seed][3] repo. I prefer this one b/c I only
-pulled in the ideas that are relevant to the projects I build, today.
+pulled in the ideas that are relevant to the projects I build, today. This repo
+also builds and runs the code within a Docker container. Abstracting dependencies
+makes it faster to get started. That said, it's also totally viable to install the
+dependencies locally and not use Docker at all.
 
 ## Dependencies
 
 * python3
 * [cookiecutter](https://github.com/cookiecutter/cookiecutter)
+* Docker
 
-See [hypermodern-python][1] for further installation instructions. However, for
-the repos that are created that use this repo, the build dependencies have been
-abstracted into a docker container.
+See [hypermodern-python][1] for further installation instructions and a deep dive 
+into each of the technoloiges used here (and for a whole lot more technologies that
+I opted to omit). 
 
 ## Quick Start
 
@@ -19,11 +23,15 @@ abstracted into a docker container.
 
     ...answer the questions
 
-    nox
+    cd [created directory]
+    ./scripts/build-container.sh
+    ./scripts/run-command.sh    
+    firefox docs/_build/html/index.html
+
 
 ## Notes
 
-* Not using --require-hashes mode due to [pytype issue 731][2]
+* Check out the README in the created directory
 
 # Links
 [1]: https://cjolowicz.github.io/posts/hypermodern-python-01-setup/
