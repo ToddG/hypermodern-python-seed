@@ -38,6 +38,9 @@ RUN apt-get install -y python3 python3-venv python3-distutils               \
 FROM base_2 as base_3
 RUN pip install nox poetry
 
+# misc stuff
+RUN apt-get install -y vim
+
 # ----------------------------------------------------------------------------
 # entrypoint
 # ----------------------------------------------------------------------------

@@ -42,11 +42,16 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
+def install_without_constraints(session: Session, *args: str, **kwargs: Any) -> None:
+    """Install packages w/o constraints."""
+    session.install(*args, **kwargs)
+
+
 @nox.session(python=_versions)
 def lint(session: Session) -> None:
     """Run the code linters."""
     args = session.posargs or locations
-    install_with_constraints(
+    install_without_constraints(
         session,
         "darglint",
         "flake8",
@@ -70,7 +75,7 @@ def test(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run tests."""
     args = session.posargs or ["--cov", "--xdoctest", "--cov-config=.coveragerc"]
-    install_with_constraints(
+    install_without_constraints(
         session, "coverage[toml]", "pytest", "pytest-cov", "xdoctest", "click"
     )
     session.install(".")
@@ -88,7 +93,7 @@ def format(session: Session) -> None:
 def isort(session: Session) -> None:
     """Run the import re-orderer (isort)."""
     args = session.posargs or locations
-    install_with_constraints(session, "flake8-isort")
+    install_without_constraints(session, "flake8-isort")
     session.run("isort", *args)
 
 
@@ -96,7 +101,7 @@ def isort(session: Session) -> None:
 def black(session: Session) -> None:
     """Run the code reformatter (black)."""
     args = session.posargs or locations
-    install_with_constraints(session, "black")
+    install_without_constraints(session, "black")
     session.run("black", *args)
 
 
@@ -104,7 +109,7 @@ def black(session: Session) -> None:
 def mypy(session: Session) -> None:
     """Run the static type checker (mypy))."""
     args = session.posargs or locations
-    install_with_constraints(session, "mypy")
+    install_without_constraints(session, "mypy")
     session.run("mypy", *args)
 
 
@@ -112,7 +117,7 @@ def mypy(session: Session) -> None:
 def pytype(session: Session) -> None:
     """Run the static type checker (pytype)."""
     args = session.posargs or ["--disable=import-error", *locations]
-    install_with_constraints(session, "pytype")
+    install_without_constraints(session, "pytype")
     session.run("pytype", *args)
 
 
@@ -136,7 +141,7 @@ def docs(session: Session) -> None:
 def prepare_documentation(session: Session) -> Session:
     """Prepare the session to render documentation."""
     session.install(".")
-    install_with_constraints(
+    install_without_constraints(
         session,
         "six",
         "sphinx",
@@ -159,4 +164,3 @@ def dist(session: Session) -> None:
     session.run("poetry", "version", "patch", external=True)
     for new_file in iglob:
         print(f"created '{new_file}'")
-
