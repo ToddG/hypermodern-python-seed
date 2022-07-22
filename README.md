@@ -10,7 +10,7 @@ dependencies locally and not use Docker at all.
 ## Dependencies
 
 * python3
-* [cookiecutter](https://github.com/cookiecutter/cookiecutter)
+* [cookiecutter][4]
 * Docker
 
 See [hypermodern-python][1] for further installation instructions and a deep dive 
@@ -31,9 +31,16 @@ I opted to omit).
 
 ## Notes
 
-* Check out the README in the created directory
+* Check out the README in the created directory for further context and commands.
 
 # Links
+
+* [hypermodern-python][1]
+* [hypermodern-python-seed repo][3]
+* [pytype issues][2]
+* [cookiecutter][4]
+
 [1]: https://cjolowicz.github.io/posts/hypermodern-python-01-setup/
 [2]: https://github.com/google/pytype/issues/731
 [3]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
+[4]: https://github.com/cookiecutter/cookiecutter
