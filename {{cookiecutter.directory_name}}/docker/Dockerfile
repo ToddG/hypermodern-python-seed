@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
 # update base image
-RUN apt-get update && apt-get upgrade
+RUN apt-get update -y && apt-get upgrade -y
 
 # install tzdata as sometimes it asks for user input
 RUN truncate -s0 /tmp/timzone.cfg &&                                        \
