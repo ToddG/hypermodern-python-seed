@@ -156,3 +156,11 @@ def dist(session: Session) -> None:
     session.run("poetry", "version", "patch", external=True)
     for new_file in iglob:
         print(f"created '{new_file}'")
+
+
+@nox.session(python=_versions)
+def webserver(session: Session) -> None:
+    """Run )."""
+    args = session.posargs or locations
+    session.install(".")
+    session.run("python", "web/server.py", *args, external=True)

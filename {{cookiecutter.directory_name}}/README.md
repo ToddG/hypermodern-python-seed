@@ -41,6 +41,19 @@ These commands delegate to `nox`.
 ./scripts/run-command.sh -rs tests
 ```
 
+## Start (Flask) Web Server
+
+```bash
+./scripts/run-command.sh -rs webserver
+```
+
+Webserver can be accessed on port 80 of the localhost.
+
+Note: this is insecure and is only provided as a quick example.
+Do not run the development server in a production environment.
+See flask documentation for details.
+
+
 ## Documentation
 
 Source documentation is at:

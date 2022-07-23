@@ -49,4 +49,8 @@ RUN pip install nox poetry
 # entrypoint
 # ----------------------------------------------------------------------------
 COPY ./launcher.sh /launcher.sh
+
+# webserver runs on this port
+EXPOSE 8080/tcp
+
 ENTRYPOINT ["/launcher.sh", "nox"]
