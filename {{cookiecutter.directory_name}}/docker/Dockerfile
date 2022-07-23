@@ -28,18 +28,22 @@ RUN rm -rf /tmp/*
 # install dev tools
 # ----------------------------------------------------------------------------
 FROM base_1 as base_2
-RUN apt-get install -y python3 python3-venv python3-distutils               \
-    python3-lib2to3 python3-pip python3-apt dvipng latexmk curl wget git    \
-    gcc build-essential
+RUN add-apt-repository -y ppa:deadsnakes/ppa &&                             \
+    apt-get install -y python3.10 python3.10-venv python3.10-distutils      \
+    python3.10-dev python3.10-lib2to3                                       \
+    dvipng latexmk curl wget git                                            \
+    gcc build-essential vim
+
+RUN apt-get remove -y python3.8 &&                                          \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.10 10
+
+RUN python -m ensurepip && python -m pip install -U pip
 
 # ----------------------------------------------------------------------------
 # install poetry, nox, and other build dependencies 
 # ----------------------------------------------------------------------------
 FROM base_2 as base_3
 RUN pip install nox poetry
-
-# misc stuff
-RUN apt-get install -y vim
 
 # ----------------------------------------------------------------------------
 # entrypoint

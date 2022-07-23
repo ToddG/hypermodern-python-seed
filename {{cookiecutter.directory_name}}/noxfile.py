@@ -10,8 +10,8 @@ import nox
 from nox.sessions import Session
 
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
-nox.options.sessions = "format", "lint", "mypy", "pytype", "tests", "docs",
-_versions = ["3.8"]
+nox.options.sessions = "format", "lint", "mypy", "tests", "docs",
+_versions = ["3.10"]
 
 
 def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> None:
@@ -111,14 +111,6 @@ def mypy(session: Session) -> None:
     args = session.posargs or locations
     install_without_constraints(session, "mypy")
     session.run("mypy", *args)
-
-
-@nox.session(python=_versions)
-def pytype(session: Session) -> None:
-    """Run the static type checker (pytype)."""
-    args = session.posargs or ["--disable=import-error", *locations]
-    install_without_constraints(session, "pytype")
-    session.run("pytype", *args)
 
 
 @nox.session(python=_versions)
