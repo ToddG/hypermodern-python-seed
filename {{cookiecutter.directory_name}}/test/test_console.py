@@ -4,6 +4,10 @@ import click.testing
 import pytest
 from click.testing import CliRunner
 from {{cookiecutter.project_name}} import console
+import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 
 @pytest.fixture

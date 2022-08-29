@@ -9,8 +9,8 @@ from typing import Any
 import nox
 from nox.sessions import Session
 
-locations = "src", "tests", "noxfile.py", "docs/conf.py"
-nox.options.sessions = "format", "lint", "mypy", "tests", "docs",
+locations = "src", "test", "noxfile.py", "docs/conf.py"
+nox.options.sessions = "format", "lint", "mypy", "test", "docs",
 _versions = ["3.10"]
 
 
@@ -67,12 +67,6 @@ def lint(session: Session) -> None:
 
 @nox.session(python=_versions)
 def test(session: Session) -> None:
-    """Delegate to 'tests'."""
-    tests(session=session)
-
-
-@nox.session(python=_versions)
-def tests(session: Session) -> None:
     """Run tests."""
     args = session.posargs or ["--cov", "--xdoctest", "--cov-config=.coveragerc"]
     install_without_constraints(
@@ -118,16 +112,6 @@ def docs(session: Session) -> None:
     """Build the documentation as html."""
     session = prepare_documentation(session)
     session.run("sphinx-build", "-b", "html", "docs", "docs/_build/html")
-
-
-# TODO: install latex deps in container
-# @nox.session(python=_versions)
-# def pdf(session: Session) -> None:
-#     """Build the documentation as pdf."""
-#     session = prepare_documentation(session)
-#     session.run("sphinx-build", "-b", "latex", "docs", "docs/_build/latex")
-#     session.cd("docs/_build/latex")
-#     session.run("make", external=True)
 
 
 def prepare_documentation(session: Session) -> Session:
