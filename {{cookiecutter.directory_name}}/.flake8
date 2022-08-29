@@ -4,7 +4,7 @@ ignore = E203,W503
 max-line-length = 88
 docstring-convention = google
 per-file-ignores =
-    tests/*:S101,ANN101
+    test/*:S101,ANN101,E402
     src/*:ANN101
     noxfile.py:ANN401
 extend-ignore =
